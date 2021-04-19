@@ -1,4 +1,4 @@
-.bg {
+body {
   width: 100%;
   height: 100%;
   background-image: url("img/bg.jpg");
@@ -7,6 +7,35 @@
   background-position: top center;
   padding: 50px;
 }
+.main {
+  padding-top: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 79.8%;
+}
+
+.logo {
+  display: block;
+  margin: auto;
+}
+.search {
+  width: 100%;
+  height: 40px;
+}
+.App {
+  margin: 0;
+  align-self: center;
+}
+
+.searchbar {
+  width: 45%;
+}
+
+.bg {
+  align-content: center;
+}
+
 html {
   overflow: overlay;
 }
@@ -26,23 +55,7 @@ html {
   background-clip: border-box;
 }
 
-.App {
-  text-align: center;
-  padding: 100px;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -63,10 +76,6 @@ html {
   to {
     transform: rotate(360deg);
   }
-}
-
-#root {
-  background-color: #17212f;
 }
 
 .custom .p-scrollpanel-wrapper {
@@ -425,7 +434,6 @@ template {
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: #333333;
 }
 
 .center {
@@ -435,12 +443,14 @@ body {
 .wrapper {
   width: 90%;
   margin: 0 auto;
+  margin-left: 0.2%;
   max-width: 1700px;
 }
 
 #table {
   display: grid;
-  grid-template-columns: repeat(17, auto) 1fr;
+  grid-template-columns: repeat(17, auto) 0.5fr;
+  margin: auto;
 }
 
 /* Every element box  */
@@ -448,11 +458,11 @@ body {
   cursor: pointer;
   width: 4vw;
   height: 4vw;
-
   padding: 2px;
-  border: 1px solid #333333;
+  /* border: 1px solid #333333; */
   border-collapse: collapse;
   overflow: hidden;
+  z-index: 10;
 }
 
 .number {
@@ -483,7 +493,7 @@ body {
 }
 
 #element-box .element-name {
-  font-size: 1.5vw;
+  font-size: 1.4vw;
 }
 
 #element-box {
@@ -492,6 +502,16 @@ body {
   margin: 0;
   padding: 0.2vw;
   overflow: hidden;
+  width: 11%;
+  height: fit-content;
+}
+.infobox {
+  position: absolute;
+  display: flex;
+  margin-bottom: -20%;
+  height: fit-content;
+  margin-top: 0vh;
+  margin-left: 8.1%;
 }
 
 /* Information Table  */
@@ -501,8 +521,10 @@ body {
   padding: 0.5vw;
   padding-top: 0;
   font-size: 1vw;
-  max-height: 10vw;
+  max-height: 11.8vw;
   overflow-y: scroll;
+  width: 40%;
+  float: right;
 }
 
 #information h1 {
@@ -631,4 +653,83 @@ body {
 .active {
   background: #fff;
   /* border-color: yellow; */
+}
+@media only screen and (max-width: 1400px) {
+  .element {
+    width: 3.9vw;
+  }
+  #table {
+    margin-left: 3%;
+  }
+  .main {
+    width: 85%;
+  }
+  #information {
+    width: 38.5%;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .element {
+    width: 3.8vw;
+  }
+  #table {
+    margin-left: 3%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .element {
+    width: 4.05vw;
+  }
+  #table {
+    margin-left: 2%;
+  }
+  .container {
+    width: 100%;
+    align-self: center;
+  }
+  .main {
+    width: 95%;
+    padding-top: 20%;
+    align-self: center;
+  }
+  .search {
+    width: 100%;
+  }
+  .logo {
+    width: 300px;
+    height: 300px;
+    display: block;
+    margin: auto;
+  }
+  .searchbar {
+    width: 75%;
+  }
+}
+@media only screen and (max-width: 560px) {
+  .element {
+    width: 4.05vw;
+  }
+  #table {
+    margin-left: -1%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .main {
+    width: 125%;
+    display: block;
+    margin-right: auto;
+    margin-left: -12%;
+  }
+  .logo {
+    width: 90%;
+    height: 90%;
+    /* margin-left: 3.5%; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .wrapper {
+    display: none;
+  }
 }

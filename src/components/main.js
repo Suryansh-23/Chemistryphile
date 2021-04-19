@@ -18,12 +18,12 @@ const Main = () => {
   const [compound, setCompound] = useState({ C: 6, H: 6 });
 
   return (
-    <div>
+    <div className="main">
       <div className="p-card" style={{ minWidth: "200px" }}>
-        <span className="p-input-icon-left p-card-content">
+        <span className="p-input-icon-left p-card-content searchbar">
           <i className="pi pi-search" />
           <InputText
-            style={{ maxWidth: "800px", width: "600px" }}
+            className="search"
             value={value}
             onChange={(e) => {
               setValue(e.target.value);
@@ -41,7 +41,7 @@ const Main = () => {
             placeholder="Type Here To Search"
           />
           <Button
-            style={{ marginLeft: "-38px" }}
+            style={{ marginLeft: "-38px", height: "40px" }}
             icon="pi pi-search"
             className="p-button"
             onClick={() => {
@@ -51,11 +51,8 @@ const Main = () => {
           />
         </span>
       </div>
-      <div style={{ paddingTop: 100 }}>
-        <Card
-          title=""
-          style={{ width: "75rem", margin: "auto", borderRadius: "10px" }}
-        >
+      <div style={{ paddingTop: 100 }} className="container">
+        <Card title="" style={{ margin: "auto", borderRadius: "10px" }}>
           <IframeResizer
             title="Structures"
             id="struct"
@@ -71,7 +68,11 @@ const Main = () => {
               borderRadius: "10px",
             }}
           ></IframeResizer>
-          <PeriodicTable toShow={compound} compound={value} />
+          <PeriodicTable
+            toShow={compound}
+            compound={value}
+            style={{ width: "100%" }}
+          />
         </Card>
       </div>
     </div>

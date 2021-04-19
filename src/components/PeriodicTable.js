@@ -51,46 +51,52 @@ class PeriodicTable extends Component {
           {/* Information Table */}
           {this.state.showInfo ? (
             <Fragment>
-              <div id="element-box" className={`${category}`}>
-                <div className="number">{number}</div>
-                <div className="symbol">{symbol}</div>
-                <div className="element-name">{name}</div>
-              </div>
-              <div id="information">
-                <div
-                  onClick={this.closeInfo}
-                  className="close-button"
-                  title="Close Info"
-                >
-                  <span>
-                    Close{" "}
-                    <span>
-                      <b>X</b>
-                    </span>
-                  </span>
+              <div className="infobox">
+                <div id="element-box" className={`${category}`}>
+                  <div className="number">{number}</div>
+                  <div className="symbol">{symbol}</div>
+                  <div className="element-name">{name}</div>
                 </div>
-                <div>
-                  <h1 className="big_title">{name}</h1>
-                  <span className={`cat_name ${category}`}>{category}</span>
-                  {appearance ? (
-                    <div className="appearance">
-                      <strong>Appearance:</strong> {appearance}
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  <div className="atom_info">
-                    <span>Atomic Mass: {atomic_mass} | </span>
-                    <span>Density: {density}</span>
-                    {molar_heat ? <span> | Molar Heat: {molar_heat}</span> : ""}
-                    {melt ? <span> | Melt: {melt}K</span> : ""}
-                    {boil ? <span> | Boil: {boil}K</span> : ""}
+                <div id="information">
+                  <div
+                    onClick={this.closeInfo}
+                    className="close-button"
+                    title="Close Info"
+                  >
+                    <span>
+                      Close{" "}
+                      <span>
+                        <b>X</b>
+                      </span>
+                    </span>
                   </div>
                   <div>
-                    {summary} ...
-                    <a target="_blank" href={source} rel="noreferrer">
-                      Source
-                    </a>
+                    <h1 className="big_title">{name}</h1>
+                    <span className={`cat_name ${category}`}>{category}</span>
+                    {appearance ? (
+                      <div className="appearance">
+                        <strong>Appearance:</strong> {appearance}
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <div className="atom_info">
+                      <span>Atomic Mass: {atomic_mass} | </span>
+                      <span>Density: {density}</span>
+                      {molar_heat ? (
+                        <span> | Molar Heat: {molar_heat}</span>
+                      ) : (
+                        ""
+                      )}
+                      {melt ? <span> | Melt: {melt}K</span> : ""}
+                      {boil ? <span> | Boil: {boil}K</span> : ""}
+                    </div>
+                    <div>
+                      {summary} ...
+                      <a target="_blank" href={source} rel="noreferrer">
+                        Source
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -10,14 +10,15 @@ function App() {
         alt="Chemistrphile"
         src={logo}
         style={{
-          margin: "auto",
           display: "block",
-          marginBottom: "-50px",
           borderRadius: "5%",
         }}
+        className="logo"
       />
       <div className="App">
-        <Main />
+        <center>
+          <Main />
+        </center>
       </div>
     </section>
   );
