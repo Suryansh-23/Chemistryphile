@@ -1,7 +1,8 @@
-<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## **Live-URL for project :** https://chemistryphile.herokuapp.com/
 
 ## Available Scripts
 
