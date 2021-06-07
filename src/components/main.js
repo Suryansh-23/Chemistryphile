@@ -1,22 +1,25 @@
 import React, { useState } from "react";
+import "primeicons/primeicons.css";
 import "primereact/resources/primereact.min.css";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
-import "primeicons/primeicons.css";
 import IframeResizer from "iframe-resizer-react";
 import "primeflex/primeflex.css";
 import "primereact/resources/themes/saga-purple/theme.css";
 import { InputText } from "primereact/inputtext";
 import PeriodicTable from "./PeriodicTable";
+import Intro from "./intro";
+import ColorCodes from "./ColorCodes";
 
-let temp =
-  "https://pubchem.ncbi.nlm.nih.gov/compound/Benzene#section=Structures&embed=true&hide_title=true";
+let temp = "";
 
 const Main = () => {
-  const [value, setValue] = useState("Benzene");
+  const [validity, setValidity] = useState(false);
+  const [value, setValue] = useState("");
   const [widgetId, setWidgetId] = useState(temp);
   const [compound, setCompound] = useState({ C: 6, H: 6 });
 
+  console.log(compound);
   return (
     <div className="main">
       <div className="p-card" style={{ minWidth: "200px" }}>
@@ -33,9 +36,11 @@ const Main = () => {
                 "#section=Structures&embed=true&hide_title=true";
             }}
             onKeyPress={(e) => {
-              if (e.code === "Enter") {
+              if (e.key === "Enter") {
                 setWidgetId(temp);
-                getAtoms(value, setCompound);
+                if (chkCompoundName(e.target.value, setValidity)) {
+                  getAtoms(value, setCompound);
+                }
               }
             }}
             placeholder="Type Here To Search"
@@ -46,33 +51,42 @@ const Main = () => {
             className="p-button"
             onClick={() => {
               setWidgetId(temp);
-              getAtoms(value, setCompound);
+              if (chkCompoundName(value, setValidity)) {
+                getAtoms(value, setCompound);
+              }
             }}
           />
         </span>
       </div>
       <div style={{ paddingTop: 100 }} className="container">
         <Card title="" style={{ margin: "auto", borderRadius: "10px" }}>
-          <IframeResizer
-            title="Structures"
-            id="struct"
-            heightCalculationMethod="bodyScroll"
-            className="pubchem-widget"
-            target="_self"
-            src={widgetId}
-            checkOrigin={false}
-            style={{
-              width: "100%",
-              minHeight: 600,
-              border: "0px",
-              borderRadius: "10px",
-            }}
-          ></IframeResizer>
-          <PeriodicTable
-            toShow={compound}
-            compound={value}
-            style={{ width: "100%" }}
-          />
+          {validity ? (
+            <>
+              <IframeResizer
+                title="Structures"
+                id="struct"
+                heightCalculationMethod="bodyScroll"
+                className="pubchem-widget"
+                target="_self"
+                src={widgetId}
+                checkOrigin={false}
+                style={{
+                  width: "100%",
+                  minHeight: 600,
+                  border: "0px",
+                  borderRadius: "10px",
+                }}
+              ></IframeResizer>
+              <ColorCodes />
+              <PeriodicTable
+                toShow={compound}
+                compound={value}
+                style={{ width: "100%" }}
+              />
+            </>
+          ) : (
+            <Intro />
+          )}
         </Card>
       </div>
     </div>
@@ -106,6 +120,28 @@ let getAtoms = (name, func) => {
       }
       func(atoms);
     });
+};
+
+let chkCompoundName = (name, setFuncCallback = 0) => {
+  fetch(
+    `https://pubchem.ncbi.nlm.nih.gov/compound/${encodeURIComponent(
+      name
+    )}#section=Structures&embed=true&hide_title=true`
+  )
+    .then((resp) => {
+      let status = resp.status;
+      console.log(status);
+      if ((200 <= status) & (status <= 299)) {
+        console.log(true);
+        setFuncCallback(true);
+        return true;
+      } else {
+        console.log(false);
+        setFuncCallback(false);
+        return false;
+      }
+    })
+    .catch(() => {});
 };
 
 export default Main;

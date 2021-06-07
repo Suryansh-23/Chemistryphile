@@ -1,9 +1,11 @@
+import React from "react";
 import "./App.css";
 import Main from "./components/main";
 import logo from "./img/logo.png";
-// import SpeechRecog from "./components/SpeechRecog";
 
 function App() {
+  // const [reload, setReload] = useState(false);
+
   return (
     <section className="bg">
       <img
@@ -14,6 +16,9 @@ function App() {
           borderRadius: "5%",
         }}
         className="logo"
+        onClick={() => {
+          window.location.reload();
+        }}
       />
       <div className="App">
         <center>
