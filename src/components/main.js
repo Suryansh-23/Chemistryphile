@@ -17,9 +17,8 @@ const Main = () => {
   const [validity, setValidity] = useState(false);
   const [value, setValue] = useState("");
   const [widgetId, setWidgetId] = useState(temp);
-  const [compound, setCompound] = useState({ C: 6, H: 6 });
+  const [compound, setCompound] = useState({});
 
-  console.log(compound);
   return (
     <div className="main">
       <div className="p-card" style={{ minWidth: "200px" }}>
@@ -38,9 +37,9 @@ const Main = () => {
             onKeyPress={(e) => {
               if (e.key === "Enter") {
                 setWidgetId(temp);
-                if (chkCompoundName(e.target.value, setValidity)) {
-                  getAtoms(value, setCompound);
-                }
+                chkCompoundName(value, setValidity);
+                getAtoms(value, setCompound);
+                // console.log("#", compound, "$", validity);
               }
             }}
             placeholder="Type Here To Search"
@@ -51,9 +50,8 @@ const Main = () => {
             className="p-button"
             onClick={() => {
               setWidgetId(temp);
-              if (chkCompoundName(value, setValidity)) {
-                getAtoms(value, setCompound);
-              }
+              getAtoms(value, setCompound);
+              chkCompoundName(value, setValidity);
             }}
           />
         </span>
@@ -77,7 +75,7 @@ const Main = () => {
                   borderRadius: "10px",
                 }}
               ></IframeResizer>
-              <ColorCodes />
+              <ColorCodes toShowEls={compound} />
               <PeriodicTable
                 toShow={compound}
                 compound={value}
@@ -118,11 +116,12 @@ let getAtoms = (name, func) => {
           atoms[i] = 0;
         }
       }
+      console.log("atoms ->", atoms);
       func(atoms);
     });
 };
 
-let chkCompoundName = (name, setFuncCallback = 0) => {
+let chkCompoundName = (name, setFuncCallback) => {
   fetch(
     `https://pubchem.ncbi.nlm.nih.gov/compound/${encodeURIComponent(
       name
