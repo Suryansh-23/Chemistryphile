@@ -30,7 +30,7 @@ const ColorCodes = ({ toShowEls }) => {
                 >
                   <i
                     className="pi pi-circle-on p-pr-1"
-                    style={{ color: "#" + i["cpk-hex"] }}
+                    style={{ color: i["cpk-hex"] }}
                   ></i>
                   {i["name"]}
                 </div>
